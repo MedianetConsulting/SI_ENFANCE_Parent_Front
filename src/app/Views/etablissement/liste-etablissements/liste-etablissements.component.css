@@ -1,0 +1,12 @@
+mat-header-cell {
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+.text-arabic {
+    direction: rtl; /* Définit la direction du texte de droite à gauche */
+    text-align: right; /* Alignement du texte à droite */
+}

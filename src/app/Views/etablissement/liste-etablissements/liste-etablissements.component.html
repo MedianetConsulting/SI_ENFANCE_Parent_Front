@@ -1,0 +1,134 @@
+<app-header></app-header>
+<div class="text-center">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="row clearfix">
+            <div class="pd-20 card-box mb-30">
+                <div class="row">
+                    <div class="text-right">
+                        <div class="pull-left">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown">FR</a> &nbsp;
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown">AR</a>
+                        </div>
+                        <div class="pull-right">
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a>مؤسسات الطفولة</a>
+                                    </li>
+                                    <li href="index.html" class="breadcrumb-item active" aria-current="page">
+                                        <a [routerLink]="'/'">الصفحة الرئيسية</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="pd-20 card-box mb-30">
+                <div class="title">
+                    <h1>مؤسسات الطفولة</h1>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        <button class="btn btn-success" role="button" (click)="search()">
+                            بحث
+                        </button>
+                    </div>
+                    <div class="col-md-10 col-sm-12 text-arabic">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                  <select id="libeGouv" class="form-select text-right" [(ngModel)]="selectedGouv" (change)="onGouvSelectionChange(selectedGouv)">
+                                    <option disabled>--- الولايـة ---</option>
+                                    <option *ngFor="let gov of gouvernorats" [value]="gov.libeGouv">{{gov.libeGouv}}</option>
+                                  </select>
+                                </div>
+                            </div>                              
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeDele" class="form-select text-right" [(ngModel)]="selectedDele">
+                                        <option value="">--- المعتـمدية ---</option>
+                                        <option *ngFor="let dele of delegations" [ngValue]="dele.libeDele">{{dele.libeDele}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeTypeEtab" class="form-select text-arabic" [(ngModel)]="selectedType">
+                                        <option disabled>--- نوع المؤسسة ---</option>
+                                        <option *ngFor="let type of typesEtablissement" [ngValue]="type.libeTypeEtab">{{type.libeTypeEtab}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeEtatEtab" class="form-select text-right" [(ngModel)]="selectedEtat">
+                                        <option value="">--- حالة المؤسسة ---</option>
+                                        <option *ngFor="let etat of etatEtablissements">{{etat.libeEtatEtab}}</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                        </div>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="pb-20">
+                        <label class="pull-right">
+                            <input matInput (keyup)="applyFilter($event)" placeholder="بحث"
+                                class="form-control form-control-sm text-right" #input>
+                        </label>
+                        <!-- <div class="pull-left">
+                            <button class="btn btn-primary" role="button" data-toggle="dropdown"  (click)="exportTable()">
+                                اكسال <i class="bi bi-file-earmark-excel"></i>
+                            </button>
+                        </div> -->
+                        
+                        <table id="listeEatblissements" mat-table [dataSource]="dataSource" matSort
+                            class="table table-bordered stripe hover nowrap">
+                            <ng-container matColumnDef="codePost">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> الترقيم البريدي </th>
+                                <td mat-cell *matCellDef="let row"> {{row.codePost}} </td>
+                            </ng-container>
+                            <!-- <ng-container matColumnDef="tele">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> رقم الهاتف </th>
+                                <td mat-cell *matCellDef="let row"> {{row.tele}} </td>
+                            </ng-container> -->
+                            <ng-container matColumnDef="adreEtab">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> العنوان </th>
+                                <td mat-cell *matCellDef="let row"> {{row.adreEtab}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="libeEtab">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> اسم المؤسسة </th>
+                                <td mat-cell *matCellDef="let row"> {{row.libeEtab}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="libeDele">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> المعتـمدية </th>
+                                <td mat-cell *matCellDef="let row"> {{row.libeDele}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="libeGouv">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> الولايـة </th>
+                                <td mat-cell *matCellDef="let row"> {{row.libeGouv}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="nombre">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> عدد </th>
+                                <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                            <tr class="mat-row" *matNoDataRow>
+                                <td class="mat-cell" colspan="4">Aucune donnée ne correspond au filtre "{{input.value}}"
+                                </td>
+                            </tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[10,5, 25, 100]" aria-label="Select page of users"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

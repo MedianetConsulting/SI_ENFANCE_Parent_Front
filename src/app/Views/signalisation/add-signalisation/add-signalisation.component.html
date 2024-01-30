@@ -1,0 +1,223 @@
+<app-header></app-header>
+<div class="text-center">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="row clearfix">
+            <div class="pd-20 card-box mb-30">
+                <div class="row">
+                    <div class="text-right">
+                        <div class="pull-left">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">FR</a> &nbsp;
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown">AR</a>
+                        </div>
+                        <div class="pull-right">
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a>إضافة اشعار</a>
+                                    </li>
+                                    <li href="index.html" class="breadcrumb-item active" aria-current="page">
+                                        <a [routerLink]="'/'">الصفحة الرئيسية</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <div class="pd-20 card-box mb-30">
+                <div class="title">
+                    <h1>إضافة اشعار جديد</h1>
+                </div>
+                <br>
+                <form [formGroup]="form" (ngSubmit)="formSubmit()" method="post" novalidate enctype="multipart/form-data">
+                    <div class="row justify-content-center text-arabic">
+                        <!-- Premier bloc -->
+                        <div class="col-sm-12 col-md-5 mb-30">
+                            <div class="card card-box">
+                                <div class="card-header" style="background-color: #a6b8c6;">
+                                    <h4 class="text-blue h4 text-center">القائم بالإشعار</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">طبيعة القائم على الإشعار<span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9">
+                                            <select class="form-control text-right" name="codeInformateur" [(ngModel)]="signalisation.codeInformateur" formControlName="codeInformateur" required [ngClass]="{ 'is-invalid': submitted && f['codeInformateur'].errors }" aria-label="طبيعة القائم على الإشعار">
+                                                <option value="1">طبيعة القائم على بالإشعار</option>
+                                                <option *ngFor="let infor of typesInformateur" [value]="infor.codeInformateur">{{infor.libeInformateur}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f['codeInformateur'].errors"
+                                                class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['codeInformateur'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">الإسم واللقب</label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="text" 
+                                            name="nomInformateur" maxlength="100" [(ngModel)]="signalisation.nomInformateur" formControlName="nomInformateur"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">المدينة</label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="text"  maxlength="100" [(ngModel)]="signalisation.ville" formControlName="ville"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">رقم الهاتف</label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="tel"  maxlength="100" [(ngModel)]="signalisation.tel" formControlName="tel"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">البريد الإلكتروني</label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  [(ngModel)]="signalisation.email" formControlName="email"
+                                            [ngClass]="{'has-error': submitted && f['email'].errors}"/>
+                                            <div class="alert-danger" *ngIf="submitted && f['email'].errors">
+                                                <div *ngIf="f['email'].errors['pattern']"> البريد الإلكتروني غير  صالح</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="height: 44px;">
+                                        <div class="col-sm-12 col-md-9 ">
+                                            
+                                        </div>
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right"></label>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Deuxième bloc -->
+                        <div class="col-sm-12 col-md-5 mb-30">
+                            <div class="card card-box text-center">
+                                <div class="card-header" style="background-color: #a6b8c6;">
+                                    <h4 class="text-blue h4 text-center" >المعني بالإشعار</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label">طبيعة المعني بالإشعار <span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9">
+                                            <select class="form-control text-right" name="codeConcerne" [(ngModel)]="signalisation.codeConcerne" formControlName="codeConcerne" [ngClass]="{ 'is-invalid': submitted && f['codeConcerne'].errors }" required>
+                                                <option value="1">طبيعة المعني بالإشعار</option>
+                                                <option *ngFor="let infor of typesConcerne" [value]="infor.codeConcerne">{{infor.libeConcerne}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f['codeConcerne'].errors" class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['codeConcerne'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">الإسم <span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="text" name="nomConcerne" [(ngModel)]="signalisation.nomConcerne" formControlName="nomConcerne" [ngClass]="{ 'is-invalid': submitted && f['nomConcerne'].errors }" required/>
+                                        </div>
+                                        <div *ngIf="submitted && f['nomConcerne'].errors" class="invalid-feedback text-arabic">
+                                            <div *ngIf="f['nomConcerne'].errors['required']">
+                                                هذا الحقل إجباري
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">المؤسسة <span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="text"  name="etablissement" [(ngModel)]="signalisation.etablissement" formControlName="etablissement" [ngClass]="{ 'is-invalid': submitted && f['etablissement'].errors }" required/>   
+                                        </div>
+                                        <div *ngIf="submitted && f['etablissement'].errors" class="invalid-feedback text-arabic">
+                                            <div *ngIf="f['etablissement'].errors['required']">
+                                                هذا الحقل إجباري
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">المدينة <span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="text"  name="villeConcerne" [(ngModel)]="signalisation.villeConcerne" formControlName="villeConcerne" [ngClass]="{ 'is-invalid': submitted && f['villeConcerne'].errors }" required/>
+                                            <div *ngIf="submitted && f['villeConcerne'].errors" class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['villeConcerne'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">العنوان <span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9 ">
+                                            <input class="form-control text-right" type="text"  name="adresseConcerne" [(ngModel)]="signalisation.adresseConcerne" formControlName="adresseConcerne" [ngClass]="{ 'is-invalid': submitted && f['adresseConcerne'].errors }" required/>
+                                            <div *ngIf="submitted && f['adresseConcerne'].errors" class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['adresseConcerne'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">الجهة الموجه اليها الإشعار<span class="etoile">*</span></label>
+                                        <div class="col-sm-12 col-md-9">
+                                            <select class="form-control" name="codeGouv" [(ngModel)]="signalisation.codeGouv" formControlName="codeGouv" [ngClass]="{ 'is-invalid': submitted && f['codeGouv'].errors }" required>
+                                                <option value="">الجهة الموجه اليها الإشعار</option>
+                                                <option *ngFor="let gov of gouvernorat" [value]="gov.codeGouv">{{gov.libeGouv}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f['codeGouv'].errors" class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['codeGouv'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-sm-12 col-md-10 mb-30">
+                            <div class="card card-box text-center">
+                                
+                                <div class="card-body">
+                                    <div class=" form-group row mb-3">
+                                        <label class="col-sm-2 col-form-label pull-right">نص الإشعار<span class="etoile">*</span></label>
+                                        <div class="col-sm-10 ">
+                                          <textarea class="form-control" style="height: 100px" name="message" [(ngModel)]="signalisation.message" formControlName="message" [ngClass]="{ 'is-invalid': submitted && f['message'].errors }" required maxlength="1000"></textarea>
+                                        </div>
+                                        <div *ngIf="submitted && f['message'].errors" class="invalid-feedback text-arabic">
+                                            <div *ngIf="f['message'].errors['required']">
+                                                هذا الحقل إجباري
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <label class="col-sm-2 col-form-label pull-right" (click)="fileInput.value =''">إرفاق ملفات </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" #fileInput type="file" (change)="selectFile(fileInput.files!)" multiple/>
+                                        </div>
+                                    
+                                    </div>  
+                                    <div class="col-sm-6">
+                                        <div *ngIf="selectedFiles && selectedFiles.length">
+                                            <div *ngFor="let item of selectedFiles" class="d-flex justify-content-between flex-wrap bg-light text-primary">
+                                                <div>
+                                                    {{item.name}}
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>                               
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">إرسال</button>
+                        </div>
+                    </div>
+                    <!-- {{signalisation | json}}
+                    <pre>{{ submissionResults | json }}</pre> -->
+                </form>
+            </div> 
+        </div>
+    </div>
+</div>

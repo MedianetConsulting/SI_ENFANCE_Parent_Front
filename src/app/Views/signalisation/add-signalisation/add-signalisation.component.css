@@ -1,0 +1,40 @@
+.block-container {
+    display: flex;
+    
+    flex: 1; /* Le conteneur s'étend pour remplir l'écran en hauteur */
+    padding: 10px; /* Ajouter un peu d'espacement autour du conteneur */
+    background-color: rgb(170, 234, 247);
+}
+
+.container {
+    margin-top: 50px;
+    display: flex;
+}
+
+.block {
+    flex: 1; /* Partage égal de l'espace disponible entre les deux blocs */
+    text-align: right; /* Centrer le texte */
+    border: 1px solid #ccc;
+    margin-left: 60px;
+}
+
+.etoile{
+    color: red;
+}
+
+.text-arabic {
+    direction: rtl; /* Définit la direction du texte de droite à gauche */
+    text-align: right; /* Alignement du texte à droite */
+}
+/* Style pour le message de succès */
+.success-snackbar {
+    background-color: green;
+    color: white;
+  }
+  
+/* Style pour le message d'erreur */
+.error-snackbar {
+background-color: red;
+color: white;
+}
+  

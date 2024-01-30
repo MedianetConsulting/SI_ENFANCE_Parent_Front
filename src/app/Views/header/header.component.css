@@ -1,0 +1,103 @@
+@media(min-width:1300px){
+    .navbar {
+        background-image: url(../../../assets/Images/entet-toufoula.jpg);
+        background-size: cover;
+        height: 200px;
+        background-position: center;
+        margin-top: 1px;
+        padding: 0; /* Ajout de rembourrage pour éviter les débordements */
+    }
+    
+    /* Styles pour le texte dans la barre de navigation */
+    .navbar .container {
+        display: flex;
+        justify-content: center; /* Centrer horizontalement */
+        align-items: center; /* Centrer verticalement */
+        
+    }
+    
+    .navbar .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .navbar .row > div {
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-style: oblique;
+        text-align: center;
+    }
+    
+    .navbar .row > div:first-child {
+        font-size: 30px; /* Ajustez la taille de la police selon vos préférences */
+    }
+    
+    .navbar .row > div:last-child {
+        color: #ebc440;
+        font-size: 35px; /* Ajustez la taille de la police selon vos préférences */
+        margin-top: 10px; /* Réduction de la marge pour un meilleur espacement */
+        text-align: center;
+    }
+    
+    /* Ajout de styles pour la version mobile */
+    @media screen and (max-width: 768px) {
+        .navbar .row > div {
+            font-size: 18px; /* Ajustez la taille de la police pour les petits écrans */
+            margin-left: 0; /* Réinitialiser la marge à zéro pour un meilleur ajustement */
+            text-align: center;
+        }
+    }
+}
+@media(max-width:1299px){
+    .navbar {
+        background-image: url(../../../assets/Images/entet-toufoula.jpg);
+        background-size: cover;
+        height: 150px;
+        width: 1250px;
+        background-position: center;
+        margin-top: 1px;
+        padding: 0; /* Ajout de rembourrage pour éviter les débordements */
+    }
+    
+    /* Styles pour le texte dans la barre de navigation */
+    .navbar .container {
+        display: flex;
+        justify-content: center; /* Centrer horizontalement */
+        align-items: center; /* Centrer verticalement */
+        
+    }
+    
+    .navbar .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .navbar .row > div {
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-style: oblique;
+        text-align: center;
+    }
+    
+    .navbar .row > div:first-child {
+        font-size: 30px; /* Ajustez la taille de la police selon vos préférences */
+    }
+    
+    .navbar .row > div:last-child {
+        color: #ebc440;
+        font-size: 35px; /* Ajustez la taille de la police selon vos préférences */
+        margin-top: 10px; /* Réduction de la marge pour un meilleur espacement */
+        text-align: center;
+    }
+    
+    /* Ajout de styles pour la version mobile */
+    @media screen and (max-width: 768px) {
+        .navbar .row > div {
+            font-size: 18px; /* Ajustez la taille de la police pour les petits écrans */
+            margin-left: 0; /* Réinitialiser la marge à zéro pour un meilleur ajustement */
+            text-align: center;
+        }
+    }
+}
