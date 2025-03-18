@@ -32,7 +32,7 @@ export class ListeEtablissementsComponent implements OnInit{
 
   
 
-  displayedColumns: string[] = ['codePost', 'adreEtab','libeEtab','libeDele','libeGouv','nombre'];
+  displayedColumns: string[] = ['nombre','libeGouv','libeDele','libeEtab','adreEtab','codePost','tele','operation'];
   dataSource!: MatTableDataSource<Etablissement>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,14 +41,13 @@ export class ListeEtablissementsComponent implements OnInit{
 
   constructor(private httpClient:HttpClient,private _service:EtablissementService,private router: Router){}
   ngOnInit(): void {
-    this.codeGouv = 11
+    /*this.codeGouv = 11
     this.selectedGouv = 'تونس'
     this.selectedEtat = ''; 
     this.selectedType = '';
-    this.selectedDele = '';
-    console.log(this.selectedGouv)
+    this.selectedDele = '';*/
     this.onGouvSelectionChange(this.selectedGouv);
-    this.search()
+    //this.search()
 
     this._service.getTypeEtab().subscribe((data:any)=>{
       this.typesEtablissement = data
@@ -62,11 +61,9 @@ export class ListeEtablissementsComponent implements OnInit{
     
     this._service.getDeleByCodeGouv(this.codeGouv).subscribe((data:any)=>{
       this.delegations = data;
-      console.log(data)  
     })
-    /* this._service.getDele().subscribe((data:any)=>{
-      this.delegations = data
-    }) */
+    
+    
   }
 
   search(){
@@ -74,10 +71,11 @@ export class ListeEtablissementsComponent implements OnInit{
       Gouvernorat: this.selectedGouv,
       Delegation: this.selectedDele,
       Etat: this.selectedEtat,
-      Type: this.selectedType,
+      Type: this.selectedType
     };
     this._service.getEtablissementsByCreteria(criteria).subscribe((data: any) => {
       this.etablissements = data;
+      
       this.dataSource = new MatTableDataSource(this.etablissements);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -103,13 +101,36 @@ export class ListeEtablissementsComponent implements OnInit{
     this.gouvernorats.forEach((gouv:any)=>{
       if(libeGouv == gouv.libeGouv){
         this.codeGouv = gouv.codeGouv
-        console.log(gouv.codeGouv);
       }
     })
-    //const selectedGouv = this.gouvernorats.find(gouv => gouv.libeGouv === libeGouv);
-    this._service.getDeleByCodeGouv(this.codeGouv).subscribe((data:any) => {
-      this.delegations = data;
-    });
+    if(this.selectedGouv != ""){
+      this._service.getDeleByCodeGouv(this.codeGouv).subscribe((data:any) => {
+        this.delegations = data;
+      })
+    }else{
+      this._service.getDele().subscribe((data:any)=>{
+        this.delegations = data
+      }) 
+    }
   }
-  
+
+  positionEtab(codeEtab:any){
+    this.router.navigate(['etablissement/positionEtab', codeEtab]);
+  }
+  diabled:boolean= true
+  isPositionAvailable(codeEtab: any): boolean {
+    this._service.getDetailEtablissement(codeEtab).subscribe((data:any)=>{
+      console.log(data.positionX)
+      if(data.positionX != null ||  data.positionY != null){
+        this.diabled = false
+    
+      }
+      else{
+        this.diabled = true
+      }
+    })
+    
+    return this.diabled
+    
+  }
 }

@@ -10,3 +10,8 @@ td{
     direction: rtl; /* Définit la direction du texte de droite à gauche */
     text-align: right; /* Alignement du texte à droite */
 }
+.inactive-btn {
+    opacity: 0.5; /* Rendre le bouton semi-transparent */
+    pointer-events: none; /* Désactiver les clics */
+    cursor: not-allowed; /* Changer le curseur */
+}

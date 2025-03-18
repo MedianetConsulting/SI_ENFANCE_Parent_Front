@@ -58,25 +58,26 @@ export class AddSignalisationComponent implements OnInit{
     this.form = this.formBuilder.group(
       {
         codeSignalisation: [['']],
-        nomInformateur: [['',Validators.maxLength(100)]],
-        tel: [['',Validators.maxLength(8)]],
-        ville: [['',Validators.maxLength(45)]],
-        email: [['',Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')]],
+        nomInformateur: ['',[Validators.required,Validators.maxLength(100)]],
+        tel: ['',[Validators.required,Validators.maxLength(8)]],
+        ville: ['',[Validators.required,Validators.maxLength(45)]],
+        email: ['',Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')],
         nomConcerne: [['',Validators.required,Validators.maxLength(100)]],
-        etablissement: [['',Validators.maxLength(1000)]],
-        villeConcerne: [['',Validators.required,Validators.maxLength(100)]],
-        adresseConcerne: [['',Validators.maxLength(1000)]],
-        message: [['',Validators.required,Validators.maxLength(1000)]],
-        dateCreation: [['']],
-        codeInformateur: [['',Validators.required]],
-        codeConcerne: [['',Validators.required,]],
-        codeGouv: [['',Validators.required,]],
-        codeDele: [['']],
+        etablissement: ['',[Validators.maxLength(1000)]],
+        villeConcerne: ['',[Validators.required,Validators.maxLength(100)]],
+        adresseConcerne: ['',Validators.maxLength(1000)],
+        message: ['',[Validators.required,Validators.maxLength(1000)]],
+        dateCreation: [''],
+        codeInformateur: ['',Validators.required],
+        codeConcerne: ['',Validators.required],
+        codeGouv: ['',Validators.required],
+        codeDele: [''],
       },
     );
 
     this._service.getTypeInformateur().subscribe((data:any)=>{
       this.typesInformateur = data
+      console.log(data)
     })
 
     this._service.getTypeConcerne().subscribe((data:any)=>{
@@ -102,7 +103,6 @@ export class AddSignalisationComponent implements OnInit{
   
       this._service.addSignalisation(this.signalisation).subscribe(
         (data: any) => {
-          console.log(data);
           sessionStorage.setItem('codeSignalisation', data.codeSignalisation);
           this.form.reset();
           this.submitted = false;

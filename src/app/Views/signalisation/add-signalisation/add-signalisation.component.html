@@ -54,22 +54,38 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-12 col-md-3 col-form-label text-right">الإسم واللقب</label>
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">الإسم واللقب <span class="etoile">*</span></label>
                                         <div class="col-sm-12 col-md-9 ">
                                             <input class="form-control text-right" type="text" 
-                                            name="nomInformateur" maxlength="100" [(ngModel)]="signalisation.nomInformateur" formControlName="nomInformateur"/>
+                                            name="nomInformateur" maxlength="100" [(ngModel)]="signalisation.nomInformateur" formControlName="nomInformateur" [ngClass]="{ 'is-invalid': submitted && f['nomInformateur'].errors }" required/>
+                                            <div *ngIf="submitted && f['nomInformateur'].errors"
+                                            class="invalid-feedback text-arabic">
+                                            <div *ngIf="f['nomInformateur'].errors['required']">
+                                                هذا الحقل إجباري
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-12 col-md-3 col-form-label text-right">المدينة</label>
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">المدينة<span class="etoile">*</span></label>
                                         <div class="col-sm-12 col-md-9 ">
-                                            <input class="form-control text-right" type="text"  maxlength="100" [(ngModel)]="signalisation.ville" formControlName="ville"/>
+                                            <input class="form-control text-right" type="text"  maxlength="100" [(ngModel)]="signalisation.ville" formControlName="ville" [ngClass]="{ 'is-invalid': submitted && f['ville'].errors }" required/>
+                                            <div *ngIf="submitted && f['ville'].errors" class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['ville'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-12 col-md-3 col-form-label text-right">رقم الهاتف</label>
+                                        <label class="col-sm-12 col-md-3 col-form-label text-right">رقم الهاتف<span class="etoile">*</span></label>
                                         <div class="col-sm-12 col-md-9 ">
-                                            <input class="form-control text-right" type="tel"  maxlength="100" [(ngModel)]="signalisation.tel" formControlName="tel"/>
+                                            <input class="form-control text-right" type="tel"  maxlength="100" [(ngModel)]="signalisation.tel" formControlName="tel" [ngClass]="{ 'is-invalid': submitted && f['tel'].errors }" required/>
+                                            <div *ngIf="submitted && f['tel'].errors" class="invalid-feedback text-arabic">
+                                                <div *ngIf="f['tel'].errors['required']">
+                                                    هذا الحقل إجباري
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">

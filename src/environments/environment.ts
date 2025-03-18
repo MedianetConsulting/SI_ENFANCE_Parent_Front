@@ -5,8 +5,8 @@
 export const environment = {
     production: false,
     apiUrl: 'localhost:7266',
-    URL_CON : 'https://192.168.1.155:7073'
-    //URL_CON : 'https://192.168.1.18:7073'
+    URL_CON : 'https://196.203.50.74:7073'
+    //URL_CON : 'https://192.168.1.23:7073'
 };
 
 /*

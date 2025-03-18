@@ -6,6 +6,7 @@ import { NomenclatureDelegation } from '../Models/nomenclatureDelegation';
 import { NomenclatureGouvernorat } from '../Models/nomenclatureGouvernorat';
 import { NomenclatureTypeEtablissement } from '../Models/nomenclatureTypeEtablissement';
 import { NomenclatureEtatEtablissement } from '../Models/nomenclatureEtatEtablissement';
+import { Observable } from 'rxjs';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -43,12 +44,13 @@ export class EtablissementService {
     return this.http.get<NomenclatureEtatEtablissement[]>(environment.URL_CON + '/api/Etablissement/EtatsEtablissements',httpOptions);
   }
 
-  /* getEtablissementsByLibeGouv(libeGouv: any) {
-    return this.http.get<Etablissement[]>(`https://localhost:7266/api/Etablissement/Gouv/${libeGouv}`);
-  } */
+   getEtablissementsByLibeGouv(libeGouv: any) {
+    return this.http.get<Etablissement[]>(environment.URL_CON + '/api/Etablissement/Gouv/' + libeGouv);
+  }
   getDeleByCodeGouv(codeGouv:any) {
     return this.http.get<NomenclatureDelegation[]>(environment.URL_CON +'/api/Etablissement/delegation/' + codeGouv);
   }
+
   getEtablissementsByGouvDele(libeGouv: any,libeDele:any) {
     return this.http.get<Etablissement[]>(environment.URL_CON + '/api/Etablissement/' +libeGouv + '/' + libeDele);
   }
@@ -57,13 +59,34 @@ export class EtablissementService {
     return this.http.get<Etablissement[]>(environment.URL_CON + '/api/Etablissement/' + libeGouv + '/' + libeDele + '/' + libeComm);
   }
 
-  /* getEtablissementsByType(LibeTypeEtab: any) {
-    return this.http.get<Etablissement[]>(`https://localhost:7266/api/Etablissement/type/${LibeTypeEtab}`);
+  getEtablissementsByType(LibeTypeEtab: any) {
+    return this.http.get<Etablissement[]>(environment.URL_CON + '/api/Etablissement/type/' + LibeTypeEtab);
   }
-
+/*
   getEtablissementsByEtat(LibeEtatEtab: any) {
     return this.http.get<Etablissement[]>(`https://localhost:7266/api/Etablissement/Etat/${LibeEtatEtab}`);
   } */
 
-  
+  getDetailEtablissement(idEtablissement:any){
+    return this.http.get(environment.URL_CON + '/api/Etablissement/detail/' + idEtablissement);
+  }
+
+  //Map
+  getCurrentPosition(): Observable<any> {
+    return new Observable((observer) => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            observer.next(position);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+          );
+        } else {
+          observer.error('Geolocation is not available in this browser.');
+        }
+      });
+    }
 }
