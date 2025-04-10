@@ -60,10 +60,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            
-            "proxyConfig": "src/proxy.conf.json"
-            },
+          "options" : {
+            "browserTarget": "app:build",
+            "ssl": true,
+            "sslKey": "D:\\SI_ENFANCE\\openssl\\privkey.pem",
+            "sslCert": "D:\\SI_ENFANCE\\openssl\\cacert.crt"
+             },
           "configurations": {
             "production": {
               "browserTarget": "METApi-Front:build:production"
