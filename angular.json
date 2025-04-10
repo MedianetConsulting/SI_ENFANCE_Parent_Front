@@ -60,10 +60,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            
-            "proxyConfig": "src/proxy.conf.json"
-            },
+          "options" : {
+            "browserTarget": "app:build",
+            "ssl": true,
+            "sslKey": "D:\\SI_ENFANCE\\openssl\\privkey.pem",
+            "sslCert": "D:\\SI_ENFANCE\\openssl\\cacert.crt"
+        },
           "configurations": {
             "production": {
               "browserTarget": "METApi-Front:build:production"
@@ -90,9 +92,15 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "./assets"
+              }
             ],
             "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],

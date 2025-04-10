@@ -18,6 +18,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddSignalisationfichierComponent } from './Views/signalisation/add-signalisationfichier/add-signalisationfichier.component';
+import { EtabLocalisationComponent } from './Views/etablissement/etab-localisation/etab-localisation.component';
+import { ChercherLocalisationComponent } from './Views/etablissement/chercher-localisation/chercher-localisation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,8 @@ import { AddSignalisationfichierComponent } from './Views/signalisation/add-sign
     HomeComponent,
     ListeEtablissementsComponent,
     AddSignalisationfichierComponent,
+    EtabLocalisationComponent,
+    ChercherLocalisationComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { AddSignalisationfichierComponent } from './Views/signalisation/add-sign
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,95 @@
+<app-header></app-header>
+<div class="text-center">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="row clearfix">
+            <div class="pd-20 card-box mb-30">
+                <div class="row">
+                    <div class="text-right">
+                        <div class="pull-left">
+                            <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown">FR</a> &nbsp;
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown">AR</a>
+                        </div>
+                        <div class="pull-right">
+                            <nav aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a>موقع مؤسسات الطفولة</a>
+                                    </li>
+                                    <li href="index.html" class="breadcrumb-item active" aria-current="page">
+                                        <a [routerLink]="'/'">الصفحة الرئيسية</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="pd-20 card-box mb-30">
+                <div class="title">
+                    <h1> تحديد موقع مؤسسات الطفولة</h1>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        <button class="btn btn-success" role="button" (click)="search(selectedEtab)">
+                            بحث
+                        </button>
+                    </div>
+                    <div class="col-md-10 col-sm-12 text-arabic">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeGouv" class="form-select text-right" [(ngModel)]="selectedGouv"
+                                        (change)="onGouvSelectionChange(selectedGouv)">
+                                        <option value="">--- الولايـة ---</option>
+                                        <option *ngFor="let gov of gouvernorats" [value]="gov.libeGouv">{{gov.libeGouv}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeDele" class="form-select text-right" [(ngModel)]="selectedDele" 
+                                    (change)="onDeleSelectionChange(selectedDele,selectedType)">
+                                        <option value="">--- المعتـمدية ---</option>
+                                        <option *ngFor="let dele of delegations" [ngValue]="dele.libeDele">{{dele.libeDele}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeTypeEtab" class="form-select text-arabic" [(ngModel)]="selectedType"
+                                        (change)="onDeleSelectionChange(selectedGouv,selectedType)">
+                                        <option value="">--- نوع المؤسسة ---</option>
+                                        <option *ngFor="let type of typesEtablissement" [ngValue]="type.libeTypeEtab">
+                                            {{type.libeTypeEtab}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <select id="libeEtab" class="form-select text-right" [(ngModel)]="selectedEtab">
+                                        <option value="">--- المؤسسة ---</option>
+                                        <option *ngFor="let etab of etablissements" [ngValue]="etab.codeEtab">
+                                            {{etab.libeEtab}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row justify-content-center">
+                        <div class="pb-20">
+                            <div class="map-frame">
+                                <div id="map"></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

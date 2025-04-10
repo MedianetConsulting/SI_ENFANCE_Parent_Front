@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NomenclatureInformateur } from '../Models/nomenclatureInformateur';
 import { NomenclatureConcerne } from '../Models/nomenclatureConcerne';
 import { NomenclatureGouvernorat } from '../Models/nomenclatureGouvernorat';
 import { environment } from 'src/environments/environment';
-
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })

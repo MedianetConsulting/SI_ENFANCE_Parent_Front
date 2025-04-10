@@ -1,4 +1,4 @@
-@media(min-width:1300px){
+@media(min-width:768px){
     .navbar {
         background-image: url(../../../assets/Images/entet-toufoula.jpg);
         background-size: cover;
@@ -43,13 +43,13 @@
     /* Ajout de styles pour la version mobile */
     @media screen and (max-width: 768px) {
         .navbar .row > div {
-            font-size: 18px; /* Ajustez la taille de la police pour les petits écrans */
-            margin-left: 0; /* Réinitialiser la marge à zéro pour un meilleur ajustement */
+            font-size: 18px;   
+            margin-left: 0; 
             text-align: center;
         }
     }
 }
-@media(max-width:1299px){
+@media(max-width:767px){
     .navbar {
         background-image: url(../../../assets/Images/entet-toufoula.jpg);
         background-size: cover;
