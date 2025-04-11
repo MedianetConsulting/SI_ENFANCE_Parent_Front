@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -16,7 +15,6 @@ import { TableUtil } from 'src/app/Utils/tableUtil';
     selector: 'app-liste-etablissements',
     templateUrl: './liste-etablissements.component.html',
     styleUrls: ['./liste-etablissements.component.css'],
-    standalone: false
 })
 export class ListeEtablissementsComponent implements OnInit{
 
@@ -40,7 +38,7 @@ export class ListeEtablissementsComponent implements OnInit{
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
 
-  constructor(private httpClient:HttpClient,private _service:EtablissementService,private router: Router){}
+  constructor(private _service:EtablissementService,private router: Router){}
   ngOnInit(): void {
     /*this.codeGouv = 11
     this.selectedGouv = 'تونس'
