@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-add-signalisationfichier',
-  templateUrl: './add-signalisationfichier.component.html',
-  styleUrls: ['./add-signalisationfichier.component.css']
+    selector: 'app-add-signalisationfichier',
+    templateUrl: './add-signalisationfichier.component.html',
+    styleUrls: ['./add-signalisationfichier.component.css'],
+    standalone: false
 })
 export class AddSignalisationfichierComponent implements OnInit{
   uploadingProgress:any;

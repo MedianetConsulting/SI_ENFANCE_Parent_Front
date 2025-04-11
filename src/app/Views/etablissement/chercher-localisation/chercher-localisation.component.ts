@@ -23,9 +23,10 @@ const iconDefault = L.icon({
 });
 L.Marker.prototype.options.icon = iconDefault;
 @Component({
-  selector: 'app-chercher-localisation',
-  templateUrl: './chercher-localisation.component.html',
-  styleUrls: ['./chercher-localisation.component.css']
+    selector: 'app-chercher-localisation',
+    templateUrl: './chercher-localisation.component.html',
+    styleUrls: ['./chercher-localisation.component.css'],
+    standalone: false
 })
 export class ChercherLocalisationComponent implements OnInit {
 

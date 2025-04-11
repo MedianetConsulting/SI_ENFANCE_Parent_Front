@@ -13,9 +13,10 @@ import { EtablissementService } from 'src/app/Services/etablissement.service';
 import { TableUtil } from 'src/app/Utils/tableUtil';
 
 @Component({
-  selector: 'app-liste-etablissements',
-  templateUrl: './liste-etablissements.component.html',
-  styleUrls: ['./liste-etablissements.component.css']
+    selector: 'app-liste-etablissements',
+    templateUrl: './liste-etablissements.component.html',
+    styleUrls: ['./liste-etablissements.component.css'],
+    standalone: false
 })
 export class ListeEtablissementsComponent implements OnInit{
 

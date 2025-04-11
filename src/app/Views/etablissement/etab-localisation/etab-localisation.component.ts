@@ -5,9 +5,10 @@ import { Etablissement } from 'src/app/Models/etablissement';
 import { EtablissementService } from 'src/app/Services/etablissement.service';
 
 @Component({
-  selector: 'app-etab-localisation',
-  templateUrl: './etab-localisation.component.html',
-  styleUrls: ['./etab-localisation.component.css']
+    selector: 'app-etab-localisation',
+    templateUrl: './etab-localisation.component.html',
+    styleUrls: ['./etab-localisation.component.css'],
+    standalone: false
 })
 export class EtabLocalisationComponent implements OnInit{
   codeEtab:any;

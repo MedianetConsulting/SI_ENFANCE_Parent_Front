@@ -13,9 +13,10 @@ import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { SignalisationFichier } from 'src/app/Models/signalisationFichier';
 @Component({
-  selector: 'app-add-signalisation',
-  templateUrl: './add-signalisation.component.html',
-  styleUrls: ['./add-signalisation.component.css']
+    selector: 'app-add-signalisation',
+    templateUrl: './add-signalisation.component.html',
+    styleUrls: ['./add-signalisation.component.css'],
+    standalone: false
 })
 export class AddSignalisationComponent implements OnInit{
 
